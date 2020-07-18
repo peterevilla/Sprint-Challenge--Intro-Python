@@ -14,15 +14,22 @@
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
+import csv
+from city import City
 cities = []
+
 
 def cityreader(cities=[]):
   # TODO Implement the functionality to read from the 'cities.csv' file
   # Ensure that the lat and lon valuse are all floats
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-    
-    return cities
+  with open('/Users/peterevilla/Desktop/code/CS/Sprint-Challenge--Intro-Python/src/cityreader/cities.csv') as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader, None)
+    for row in reader:
+      cities.append(City(row[0], float(row[3]), float(row[4])))
+  return cities
 
 cityreader(cities)
 
